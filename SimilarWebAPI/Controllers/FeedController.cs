@@ -1,4 +1,7 @@
 ﻿using SimilarWebAPI.Manager;
+using SimilarWebAPI.Models;
+using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -12,18 +15,32 @@ namespace SimilarWebAPI.Controllers
         [Route("api/feed/{userName}")]
         public HttpResponseMessage Get(HttpRequestMessage request, string userName)
         {
-            var result = FeedManager.GetAllMessagesForUser(userName.ToLower());
-
-            return request.CreateResponse(result.Success ? HttpStatusCode.OK : HttpStatusCode.Conflict, result.Data);
+            try
+            {
+                List<Message> messages = FeedManager.GetAllMessagesForUser(userName);
+                return request.CreateResponse(HttpStatusCode.OK, messages);
+            }
+            catch (Exception ex)
+            {
+                LoggerManager.Log(ex.Message);
+                return request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
         }
 
         [ResponseType(typeof(string))]
         [Route("api/feed")]
         public HttpResponseMessage Get(HttpRequestMessage request)
         {
-            var result = FeedManager.GetAllMessages();
-
-            return request.CreateResponse(result.Success ? HttpStatusCode.OK : HttpStatusCode.Conflict, result.Data);
+            try
+            {
+                List<Message> messages = FeedManager.GetAllMessages();
+                return request.CreateResponse(HttpStatusCode.OK, messages);
+            }
+            catch (Exception ex)
+            {
+                LoggerManager.Log(ex.Message);
+                return request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
         }
     }
 }

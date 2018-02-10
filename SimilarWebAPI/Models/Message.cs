@@ -8,8 +8,8 @@ namespace SimilarWebAPI.Models
 {
     public class Message : ICachable
     {
-        public String UserName { get; set; }
-        public String MessageText { get; set; }
+        public string UserName { get; set; }
+        public string MessageText { get; set; }
         public DateTime DateTime { get; set; }
 
         public Message(string userName, string messageText, DateTime dateTime)

@@ -1,4 +1,6 @@
 ﻿using SimilarWebAPI.Manager;
+using SimilarWebAPI.Models;
+using System;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -10,12 +12,19 @@ namespace SimilarWebAPI.Controllers
     {
         [ResponseType(typeof(string))]
         [Route("api/messages/{userName}")]
-        public HttpResponseMessage Post(HttpRequestMessage request, string userName)
+        public HttpResponseMessage Post(HttpRequestMessage request, string userName, [FromBody]string message)
         {
-            string message = request.Content.ReadAsStringAsync().Result;
-            var result = MessagesManager.AddNewMessage(userName.ToLower(), message);
+            try
+            {
+                ResultModel<String> result = MessagesManager.AddNewMessage(userName.ToLower(), message);
 
-            return request.CreateResponse(result.Success ? HttpStatusCode.OK : HttpStatusCode.Conflict, result.Data);
+                return request.CreateResponse(result.Success ? HttpStatusCode.OK : HttpStatusCode.Conflict, result.Data);
+            }
+            catch (Exception ex)
+            {
+                LoggerManager.Log(ex.Message);
+                return request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
         }
     }
 }

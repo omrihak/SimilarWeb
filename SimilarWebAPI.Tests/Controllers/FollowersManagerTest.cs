@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimilarWebAPI.Manager;
+using SimilarWebAPI.Models;
 using WebApi.Tests.Helpers;
 
 namespace WebApi.Tests.Controllers
@@ -33,12 +34,12 @@ namespace WebApi.Tests.Controllers
             Assert.IsFalse(FollowersManager.AddNewFollower("f", "b").Success);
             Assert.IsFalse(FollowersManager.AddNewFollower("b", "f").Success);
 
-            var followers = FollowersManager.GetAllFollowers();
+            List<Follower> followers = FollowersManager.GetAllFollowers();
             Assert.AreEqual(2, followers.Count);
-            Assert.AreEqual("b", followers[0].Item1);
-            Assert.AreEqual("a", followers[0].Item2);
-            Assert.AreEqual("b", followers[1].Item1);
-            Assert.AreEqual("c", followers[1].Item2);
+            Assert.AreEqual("b", followers[0].FollowedUserName);
+            Assert.AreEqual("a", followers[0].FollowingUserName);
+            Assert.AreEqual("b", followers[1].FollowedUserName);
+            Assert.AreEqual("c", followers[1].FollowingUserName);
         }
 
 
@@ -66,10 +67,10 @@ namespace WebApi.Tests.Controllers
 
             var followers = FollowersManager.GetAllFollowers();
             Assert.AreEqual(2, followers.Count);
-            Assert.AreEqual("b", followers[0].Item1);
-            Assert.AreEqual("a", followers[0].Item2);
-            Assert.AreEqual("b", followers[1].Item1);
-            Assert.AreEqual("c", followers[1].Item2);
+            Assert.AreEqual("b", followers[0].FollowedUserName);
+            Assert.AreEqual("a", followers[0].FollowingUserName);
+            Assert.AreEqual("b", followers[1].FollowedUserName);
+            Assert.AreEqual("c", followers[1].FollowingUserName);
         }
     }
 }

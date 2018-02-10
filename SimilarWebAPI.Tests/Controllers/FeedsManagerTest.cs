@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimilarWebAPI.Manager;
+using SimilarWebAPI.Models;
 using WebApi.Tests.Helpers;
 
 namespace WebApi.Tests.Controllers
@@ -52,10 +53,10 @@ namespace WebApi.Tests.Controllers
                 Assert.IsTrue(MessagesManager.AddNewMessage("e", "e wrote " + i + i).Success);
             }
 
-            var messagesForUserA = FeedManager.GetAllMessagesForUser("a");
-            Assert.AreEqual(messagesForUserA.Data.Count, 12);
-            var allMessages = FeedManager.GetAllMessages();
-            Assert.AreEqual(allMessages.Data.Count, 18);
+            List<Message> messagesForUserA = FeedManager.GetAllMessagesForUser("a");
+            Assert.AreEqual(messagesForUserA.Count, 12);
+            List<Message> allMessages = FeedManager.GetAllMessages();
+            Assert.AreEqual(allMessages.Count, 18);
         }
 
 
@@ -88,11 +89,10 @@ namespace WebApi.Tests.Controllers
                 MessagesManager.AddNewMessage("d", "d wrote " + i + i);
             }
 
-            var messages = FeedManager.GetAllMessagesForUser("a");
-            int a = 1;
+            List<Message> messages = FeedManager.GetAllMessagesForUser("a");
 
             // Testing how the caching is working
-            var messages2 = FeedManager.GetAllMessagesForUser("a");
+            List<Message> messages2 = FeedManager.GetAllMessagesForUser("a");
         }
     }
 }

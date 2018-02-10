@@ -14,18 +14,17 @@ namespace SimilarWebAPI.Manager
         /// <summary>
         /// Gets the list of users that the requested user follows
         /// </summary>
-        /// <param name="user">The user whom we are looking for the users which he follows</param>
+        /// <param name="userName">The user whom we are looking for the users which he follows</param>
         /// <returns>A list of all of the user's follows</returns>
-        public static List<Follower> getFollowedUserNames(string user)
+        public static List<Follower> GetFollowedUserNames(string userName)
         {
-            List<Tuple<string, DateTime>> usersLastMessage = new List<Tuple<string, DateTime>>();
-            if (!caches.ContainsKey(user))
+            if (!caches.ContainsKey(userName))
             {
-                caches[user] = new MyCache<Follower>();
+                caches[userName] = new MyCache<Follower>();
             }
-            List<Follower> newFollowers = FollowersManager.getNewFollowersForUser(user, caches[user].GetLatestDateTime());
+            List<Follower> newFollowers = FollowersManager.GetNewFollowersForUser(userName, caches[userName].GetLatestDateTime());
             AddFollowers(newFollowers);
-            List<Follower> followersResult = caches[user].GetData().ToList();
+            List<Follower> followersResult = caches[userName].GetData().ToList();
 
             CleanCache();
             return followersResult;
@@ -47,7 +46,9 @@ namespace SimilarWebAPI.Manager
         private static void CleanCache()
         {
             while (LruQueue.Count > MAX_FOLLOWERS)
+            {
                 caches[LruQueue.Dequeue()].RemoveMessage();
+            }
         }
     }
 }

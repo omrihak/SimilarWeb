@@ -12,7 +12,7 @@ namespace WebApi.Tests.Helpers
     {
         public static void Clean()
         {
-            String commandTextMessages = "DELETE FROM MESSAGES;";
+            string commandTextMessages = "DELETE FROM MESSAGES;";
             using (var connection = SqlServerConnectionHelper.getConnection())
             {
                 using (SqlCommand command = new SqlCommand(commandTextMessages, connection))
@@ -29,7 +29,7 @@ namespace WebApi.Tests.Helpers
 
             }
 
-            String commandTextFollowers = "DELETE FROM FOLLOWERS;";
+            string commandTextFollowers = "DELETE FROM FOLLOWERS;";
             using (var connection = SqlServerConnectionHelper.getConnection())
             {
                 using (SqlCommand command = new SqlCommand(commandTextFollowers, connection))
@@ -46,7 +46,7 @@ namespace WebApi.Tests.Helpers
 
             }
 
-            String commandTextUsers = "DELETE FROM USERS;";
+            string commandTextUsers = "DELETE FROM USERS;";
             using (var connection = SqlServerConnectionHelper.getConnection())
             {
                 using (SqlCommand command = new SqlCommand(commandTextUsers, connection))

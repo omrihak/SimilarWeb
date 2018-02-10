@@ -10,18 +10,18 @@ namespace SimilarWebAPI.Models
     {
         public string FollowingUserName { get; set;  }
         public string FollowedUserName { get; set; }
-        public DateTime DateTime { get; set; }
+        public DateTime CreationDateTime { get; set; }
 
         public Follower(string followingUserName, string followedUserName, DateTime dateTime)
         {
             FollowingUserName = followingUserName;
             FollowedUserName = followedUserName;
-            DateTime = dateTime;
+            CreationDateTime = dateTime;
         }
 
         public DateTime GetDateTime()
         {
-            return DateTime;
+            return CreationDateTime;
         }
     }
 }

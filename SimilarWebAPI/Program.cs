@@ -10,7 +10,7 @@ namespace SimilarWebAPI
         static void Main(string[] args)
         {
 
-            var config = new HttpSelfHostConfiguration("http://localhost:8081");
+            HttpSelfHostConfiguration config = new HttpSelfHostConfiguration("http://localhost:8081");
 
             config.MapHttpAttributeRoutes();
 

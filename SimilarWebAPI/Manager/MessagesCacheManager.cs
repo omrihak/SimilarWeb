@@ -13,23 +13,23 @@ namespace SimilarWebAPI.Manager
         /// <summary>
         /// Gets All of the messages for the list of users - updates the cache with new data from the database which is missing in the cache
         /// </summary>
-        /// <param name="users">The list uf users to retrieve their messages</param>
+        /// <param name="userNames">The list uf users to retrieve their messages</param>
         /// <returns>A list of all of the requested users messages</returns>
-        public static List<Message> getMessagesFor(List<string> users)
+        public static List<Message> GetMessagesFor(List<string> userNames)
         {
-            List<Tuple<string, DateTime>> usersLastMessageDateTime = new List<Tuple<string, DateTime>>();
-            users.ForEach(userName => {
+            Dictionary<string, DateTime> usersLastMessageDateTime = new Dictionary<string, DateTime>();
+            userNames.ForEach(userName => {
                 if (!caches.ContainsKey(userName))
                 {
                     caches[userName] = new MyCache<Message>();
                 }
-                usersLastMessageDateTime.Add(new Tuple<string, DateTime>(userName, caches[userName].GetLatestDateTime()));
+                usersLastMessageDateTime[userName] = caches[userName].GetLatestDateTime();
             });
             List<Message> newMessages = MessagesManager.GetMessagesForUsers(usersLastMessageDateTime);
             AddMessages(newMessages);
             List<Message> messagesResult = new List<Message>();
 
-            users.ForEach(userName => messagesResult.AddRange(caches[userName].GetData()));
+            userNames.ForEach(userName => messagesResult.AddRange(caches[userName].GetData()));
             CleanCache();
             return messagesResult;
         }
@@ -37,7 +37,9 @@ namespace SimilarWebAPI.Manager
         private static void CleanCache()
         {
             while (LruQueue.Count > MAX_MESSAGES)
+            {
                 caches[LruQueue.Dequeue()].RemoveMessage();
+            }
         }
 
         private static void AddMessages(List<Message> newMessages)

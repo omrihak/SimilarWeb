@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace SimilarWebAPI.Models
 {
-    public class ManagerResult<T>
+    public class ResultModel<T>
     {
         public bool Success { get; set; }
         public T Data { get; set; }
 
-        public ManagerResult(bool success, T data)
+        public ResultModel(bool success, T data)
         {
             this.Success = success;
             this.Data = data;

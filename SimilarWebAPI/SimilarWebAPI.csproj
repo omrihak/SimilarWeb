@@ -84,9 +84,9 @@
     <Compile Include="Manager\UsersManager.cs" />
     <Compile Include="Models\Follower.cs" />
     <Compile Include="Models\ICachable.cs" />
-    <Compile Include="Models\ManagerResult.cs" />
+    <Compile Include="Models\ResultModel.cs" />
     <Compile Include="Models\Message.cs" />
-    <Compile Include="Models\UserMessagesCache.cs" />
+    <Compile Include="Models\MyCache.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
