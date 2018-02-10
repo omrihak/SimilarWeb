@@ -14,6 +14,10 @@ namespace SimilarWebAPI.Controllers
         [Route("api/messages/{userName}")]
         public HttpResponseMessage Post(HttpRequestMessage request, string userName, [FromBody]string message)
         {
+            if(message == null)
+            {
+                return request.CreateResponse(HttpStatusCode.BadRequest, "The message was not accepted properly");
+            }
             try
             {
                 ResultModel<String> result = MessagesManager.AddNewMessage(userName.ToLower(), message);

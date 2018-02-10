@@ -17,7 +17,7 @@ namespace SimilarWebAPI.Controllers
         {
             try
             {
-                List<Message> messages = FeedManager.GetAllMessagesForUser(userName);
+                List<Message> messages = FeedManager.GetAllMessagesForUser(userName.ToLower());
                 return request.CreateResponse(HttpStatusCode.OK, messages);
             }
             catch (Exception ex)

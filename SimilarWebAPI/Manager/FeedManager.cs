@@ -42,7 +42,7 @@ namespace SimilarWebAPI.Manager
         /// <returns>A List of all of the messages in his feed</returns>
         public static List<Message> GetAllMessagesForUser(string userName)
         {
-            List<Follower> followedUserNames = FollowersCacheManager.GetFollowedUserNames(userName.ToLower());
+            List<Follower> followedUserNames = FollowersCacheManager.GetFollowedUserNames(userName);
             List<Message> messages = MessagesCacheManager.GetMessagesFor(followedUserNames.ConvertAll(follower => follower.FollowedUserName));
 
             return messages;

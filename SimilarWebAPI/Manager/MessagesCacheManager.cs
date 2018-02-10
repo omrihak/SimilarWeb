@@ -7,7 +7,7 @@ namespace SimilarWebAPI.Manager
     public class MessagesCacheManager
     {
         private static Dictionary<string, MyCache<Message>> caches = new Dictionary<string, MyCache<Message>>();
-        private static Queue<string> LruQueue = new Queue<string>();
+        private static Queue<string> lruCache = new Queue<string>();
         private const int MAX_MESSAGES = 10000;
 
         /// <summary>
@@ -29,6 +29,7 @@ namespace SimilarWebAPI.Manager
             AddMessages(newMessages);
             List<Message> messagesResult = new List<Message>();
 
+            //todo: instead of adding the lists one after another , add the messages while keeping the new list sorted
             userNames.ForEach(userName => messagesResult.AddRange(caches[userName].GetData()));
             CleanCache();
             return messagesResult;
@@ -36,9 +37,9 @@ namespace SimilarWebAPI.Manager
 
         private static void CleanCache()
         {
-            while (LruQueue.Count > MAX_MESSAGES)
+            while (lruCache.Count > MAX_MESSAGES)
             {
-                caches[LruQueue.Dequeue()].RemoveMessage();
+                caches[lruCache.Dequeue()].RemoveMessage();
             }
         }
 
@@ -51,7 +52,7 @@ namespace SimilarWebAPI.Manager
                     caches[msg.UserName] = new MyCache<Message>();
                 }
                 caches[msg.UserName].AddObject(msg);
-                LruQueue.Enqueue(msg.UserName);
+                lruCache.Enqueue(msg.UserName);
             }
         }
     }
