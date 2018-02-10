@@ -1,0 +1,15 @@
+C:\Users\omrih\source\repos\SimilarWebAPI\SimilarWebAPI\bin\Debug\SimilarWebAPI.exe.config
+C:\Users\omrih\source\repos\SimilarWebAPI\SimilarWebAPI\bin\Debug\SimilarWebAPI.exe
+C:\Users\omrih\source\repos\SimilarWebAPI\SimilarWebAPI\bin\Debug\SimilarWebAPI.pdb
+C:\Users\omrih\source\repos\SimilarWebAPI\SimilarWebAPI\bin\Debug\Newtonsoft.Json.dll
+C:\Users\omrih\source\repos\SimilarWebAPI\SimilarWebAPI\bin\Debug\Newtonsoft.Json.xml
+C:\Users\omrih\source\repos\SimilarWebAPI\SimilarWebAPI\obj\Debug\SimilarWebAPI.csprojResolveAssemblyReference.cache
+C:\Users\omrih\source\repos\SimilarWebAPI\SimilarWebAPI\obj\Debug\SimilarWebAPI.csproj.CoreCompileInputs.cache
+C:\Users\omrih\source\repos\SimilarWebAPI\SimilarWebAPI\obj\Debug\SimilarWebAPI.exe
+C:\Users\omrih\source\repos\SimilarWebAPI\SimilarWebAPI\obj\Debug\SimilarWebAPI.pdb
+C:\Users\omrih\source\repos\SimilarWebAPI\SimilarWebAPI\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\omrih\source\repos\SimilarWebAPI\SimilarWebAPI\bin\Debug\System.Web.Http.dll
+C:\Users\omrih\source\repos\SimilarWebAPI\SimilarWebAPI\bin\Debug\System.Web.Http.SelfHost.dll
+C:\Users\omrih\source\repos\SimilarWebAPI\SimilarWebAPI\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\omrih\source\repos\SimilarWebAPI\SimilarWebAPI\bin\Debug\System.Web.Http.xml
+C:\Users\omrih\source\repos\SimilarWebAPI\SimilarWebAPI\bin\Debug\System.Web.Http.SelfHost.xml
